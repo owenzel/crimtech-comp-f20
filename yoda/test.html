@@ -8,13 +8,23 @@
     <script>
         console.log("You found me!");
         function square(i) {
-            // Your code here!
-            return 0
+            if (typeof i != "number") {
+                return -1
+            }
+            return i * i
         }
 
         function numberString(i) {
-            // Your code here!
-            return ""
+            if (typeof i != "number" || i < 0) {
+                return -1
+            }
+            
+            number = ""
+            for (j = 1; j <= i; j++)
+            {
+                number += j
+            }
+            return number
         }
     </script>
 </body>
