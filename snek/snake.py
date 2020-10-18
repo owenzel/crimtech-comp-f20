@@ -55,24 +55,15 @@ class Snake(object):
 
     def move(self):
         # See section 1, "Move the snake!". You will be revisiting this section a few times.
-        #For the length of the body:
-        #Move the first cell down in the direction given
-        #Move the second cell into the place of the first cell 
-        #Move the third cell into the place of the second cell
-        #and so on until we reach the end (self.body[0][0] + DIR[self.direction][0], self.body[0][1] + DIR[self.direction][1])
-
-        temp = (self.body[0][0], self.body[0][1])
-        self.body[0] = (self.body[0][0] + DIR[self.direction][0], self.body[0][1] + DIR[self.direction][1])
-        for i in range(1, len(self.body)):
-            if self.collision(self.body[0][0], self.body[0][1]):
-                self.kill()
-                return
-            self.body[i] = temp
-            temp = (self.body[i][0], self.body[i][1])
+        if self.collision(self.body[0][0], self.body[0][1]):
+            self.kill()
+            return
+        self.body.insert(0, (self.body[0][0]+DIR[self.direction][0], self.body[0][1]+DIR[self.direction][1]))
         if self.grow:
-            #self.body.insert(0, (self.body[0][0] + DIR[self.direction][0], self.body[0][1] + DIR[self.direction][1]))
-            self.body.append(temp)
+            self.l += 1
             self.grow = False
+        else:
+            self.body.pop(len(self.body) - 1)
 
     def kill(self):
         # See section 11, "Try again!" **NOTE: I completed this later in the file
@@ -175,7 +166,6 @@ def main():
         if snake.get_head()[0] == apple.position[0] and snake.get_head()[1] == apple.position[1]:
             print("the snake ate an apple!")
             score += 1
-            snake.l += 1
             snake.grow = True
             apple.place(snake.body)
         

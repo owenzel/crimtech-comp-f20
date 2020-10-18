@@ -20,6 +20,82 @@ let std_quotes = ["Patience you must have, my young padawan.",
 ];
 
 function respond() {
-    // Your Code Here
-    console.log("Hello World!");
+    var textElement = document.getElementById("yoda-text")
+    var imageElement = document.getElementById("yoda-image")
+    var inputElement = document.getElementById("input")
+    console.log(inputElement.value)
+
+    yodaImages = ['img/cute-dark.jpg', 'img/cute-force.jpg', 'img/cute-std.jpg', 'img/regular-dark.jpg', 'img/regular-force.jpg', 'img/regular-std.jpg']
+
+    if (inputElement.value.includes('cute') || inputElement.value.includes('baby'))
+    {
+        //Baby yoda
+        imageSrc = generateImage(['cute'])
+    }
+    else if (inputElement.value.includes('force'))
+    {
+        if (inputElement.value.includes('dark'))
+        {
+            // Battle sith lord
+            imageSrc = generateImage(['dark'])
+        }
+        else
+        {
+            // Use the force
+            imageSrc = generateImage(['force'])
+        }
+    }
+    else
+    {
+        imageSrc = generateImage(['jpg'])
+    }
+    
+    imageElement.setAttribute('src', imageSrc)
+    textElement.innerText = generateText(imageSrc)
+    inputElement.value = "" // Clear the textbox after pressing response
+}
+
+function generateImage(types)
+{
+    images = [];
+
+    for (var i = 0; i < yodaImages.length; i++)
+    {
+        for (var j = 0; j < types.length; j++)
+        {
+            if (yodaImages[i].includes(types[j]))
+            {
+                images.push(yodaImages[i])
+            }
+        }
+    }
+
+    index = parseInt(Math.random() * images.length)
+    return images[index]
+}
+
+function generateText(image)
+{
+    if (image.includes('regular'))
+    {
+        if (image.includes('dark'))
+        {
+            index = parseInt(Math.random() * dark_quotes.length)
+            return dark_quotes[index]
+        }
+        else if (image.includes('force'))
+        {
+            index = parseInt(Math.random() * force_quotes.length)
+            return force_quotes[index]
+        }
+        else
+        {
+            index = parseInt(Math.random() * std_quotes.length)
+            return std_quotes[index]
+        }
+    }
+    else //if yoda is a baby
+    {
+        return "hmm" //need to generate random number of m's
+    }
 }
