@@ -3,15 +3,15 @@
     <head>
         <title>Yoda Chat</title>
         <link rel='shortcut icon' type='image/png' href='img/favicon.ico'>
-        <script src="response_handler.js"></script>
+        <script src="response_handler.js" async></script>
     </head>
     <body>
         <center>
             <img id="yoda-image" src="img/cute-dark.jpg" height=400px/>
             <p id="yoda-text">To yoda chat I welcome you. Yes, hmmmmm.</p>
-            <input id="input" type="text"></input>
+            <input class="input" id="input" type="text"></input>
             <br />
-            <button height=100px onClick="respond()">Response</button>
+            <button id="response-button" height=100px onClick="respond()">Response</button>
         </center>
     </body>
 </html>

@@ -19,11 +19,17 @@ let std_quotes = ["Patience you must have, my young padawan.",
 "Difficult to see. Always in motion is the future."
 ];
 
+var inputElement = document.getElementById("input")
+inputElement.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        respond()
+    }
+});
+
 function respond() {
+    
     var textElement = document.getElementById("yoda-text")
     var imageElement = document.getElementById("yoda-image")
-    var inputElement = document.getElementById("input")
-    console.log(inputElement.value)
 
     yodaImages = ['img/cute-dark.jpg', 'img/cute-force.jpg', 'img/cute-std.jpg', 'img/regular-dark.jpg', 'img/regular-force.jpg', 'img/regular-std.jpg']
 
@@ -96,6 +102,6 @@ function generateText(image)
     }
     else //if yoda is a baby
     {
-        return "hmm" //need to generate random number of m's
+        return "H" + "m".repeat(Math.random() * 20 + 1) //need to generate random number of m's
     }
 }
