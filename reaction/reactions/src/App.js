@@ -16,7 +16,7 @@ class Panel extends React.Component {
     this.setState({true_duration:(Math.floor(Math.random() * 6) + 2) * 1000})
     this.setState({counting:true})
     this.handle_color('darkred')
-    setTimeout(this.handle_color, 3000, 'green');
+    setTimeout(this.handle_color, this.state.true_duration, 'green');
   }
   end_count() {
     if (window.performance.now() - this.state.start_time > this.state.true_duration)
